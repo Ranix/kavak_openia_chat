@@ -44,20 +44,21 @@ Use these scenarios to validate that the consultative logic, search tools, and m
 The system follows a standard event-driven webhook pattern that moves user messages through **Twilio → FastAPI → OpenAI → Tools → Response**.
 
 ```mermaid
-flowchart TD
-    A [WhatsApp User] --> B[Twilio API<br/>Webhook Event]
-    B --> C[FastAPI Gateway]
-    C --> C1[Orchestrator<br/>Conversation Logic]
-    C --> C2[State Manager<br/>User Context]
-    C -->|Tool Calls| D[Tools Layer]
+graph TD;
 
-    D --> D1[Inventory DB<br/>Read-Only]
-    D --> D2[Financing Engine<br/>Math Logic]
-    D --> D3[OpenAI API<br/>Reasoning + Generation]
+    A[WhatsApp User] --> B[Twilio API<br/>Webhook Event];
+    B --> C[FastAPI Gateway];
+    C --> C1[Orchestrator<br/>Conversation Logic];
+    C --> C2[State Manager<br/>User Context];
+    C -->|Tool Calls| D[Tools Layer];
 
-    D3 --> C
-    C --> B
-    B --> A
+    D --> D1[Inventory DB<br/>Read-Only];
+    D --> D2[Financing Engine<br/>Math Logic];
+    D --> D3[OpenAI API<br/>Reasoning + Generation];
+
+    D3 --> C;
+    C --> B;
+    B --> A;
 ```
 
 ## 🧩 Agent Prompts & Logic
